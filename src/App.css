@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Song+Myung&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+header {
+  /* font-family: 'Playfair Display', serif; */
+}
+
+body {
+  /* background-image: url("./Images/background-img.jpg"); */
+  background-size: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Righteous", "Jua", sans-serif;
+  margin-top: 50px;
+  padding: 80px;
+  position: relative;
+}
+
+footer {
+  margin-top: 100px;
+  padding: 100px;
+  background-color: rgba(55, 55, 55, 0.3);
+  width: 100%;
+  left: 0;
+  position: absolute;
+}
+
+hh1 {
+  font-family: "Pacifico", cursive;
+  font-size: 100px;
+  text-align: center;
+}
+hh2 {
+  /* background-image: url("https://img.freepik.com/free-vector/tropical-leafy-background-vector_53876-144347.jpg?t=st=1647412104~exp=1647412704~hmac=78a31381d9751c3f950468c67e576e6e658788983c6007c1a9aa6e6662342582&w=740"); */
+  border-radius: 10px 100px / 120px;
+  border: 5px solid white;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 80px;
+  font-family: "Righteous", cursive;
+  color: black;
+  height: 80px;
+  justify-content: center;
+  padding: 20px 0;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  max-width: 800px;
+}
+hh3 {
+  max-width: 600px;
+  background-color: black;
+  font-size: 60px;
+  font-family: "Righteous", cursive;
+  border-radius: 10px 100px / 120px;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+}
+hh4 {
+  color: black;
+  font-size: 40px;
+  font-family: "Righteous", cursive;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 30px;
+}
+hh5 {
+  color: black;
+  font-family: "Righteous", cursive;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+  border: px solid black;
+}
+
+.icon {
+  /* border: 1px solid; */
+}
+.img-fluid {
+  border-radius: 30px;
+  max-width: 800px;
+}
+.mb-2 {
+  background-color: white;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.mb-3 {
+  /* background-color: rgba(55, 55, 55, .4); */
+}
+.d-grid {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.cardgroup {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tb {
+  text-align: center;
+}
+.pagination {
+  justify-content: center;
+}
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+}
+
+h2 {
+  background-image: url("https://img.freepik.com/free-vector/tropical-leafy-background-vector_53876-144347.jpg?t=st=1647412104~exp=1647412704~hmac=78a31381d9751c3f950468c67e576e6e658788983c6007c1a9aa6e6662342582&w=740");
+  border-radius: 10px 100px / 120px;
+  border: 5px solid white;
+  text-align: center;
+  margin: 0 auto;
+  color: black;
+  height: 80px;
+  justify-content: center;
+  padding: 20px 0;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  max-width: 850px;
+}
+
+h3 {
+  max-width: 600px;
+  background-color: black;
+  border-radius: 10px 100px / 120px;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.carousel-item {
+  /* min-width: 500px; */
+}
+.d-block {
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+imgb {
+  border: 5px solid black;
+}
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url(https://example.com/MaterialIcons-Regular.woff2) format("woff2"),
+    url(https://example.com/MaterialIcons-Regular.woff) format("woff"),
+    url(https://example.com/MaterialIcons-Regular.ttf) format("truetype");
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}

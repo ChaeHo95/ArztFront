@@ -1,0 +1,22 @@
+@mixin border($background_color,$border_width,$border_color) {
+    @if($border_width){border: $border_width solid $border_color;}
+    @else{
+        border: 0px solid $border_color;
+    }
+    @if($background-color){
+        background-color: $background_color;
+    }
+}
+@mixin m-p-zreo() {
+    margin: 0;
+    padding: 0;
+}
+@mixin magin-right-left-auto() {
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+@mixin magin-top-bottom-auto() {
+    margin-top: auto;
+    margin-bottom: auto; 
+}
