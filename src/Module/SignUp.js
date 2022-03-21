@@ -62,6 +62,10 @@ const Registers = () => {
         success = false;
       }
     }
+    if (success) {
+      success = checkName();
+    }
+
     if (phone.length < 10 && success) {
       alert("전화번호 형식이 올바르지 않습니다.");
       success = false;
@@ -116,6 +120,15 @@ const Registers = () => {
         });
       }
     }
+  };
+
+  const checkName = () => {
+    const reg = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    if (!reg.test(names)) {
+      alert("한국어로 된 이름 작성해주세요.");
+      return false;
+    }
+    return true;
   };
 
   const checkMail = () => {

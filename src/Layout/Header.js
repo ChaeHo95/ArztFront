@@ -67,7 +67,7 @@ const Header = () => {
         fixed="top"
         className="justify-content-end"
       >
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" style={{ marginLeft: "10px" }}>
           <h1>Artz</h1>
         </Navbar.Brand>
 
@@ -89,18 +89,21 @@ const Header = () => {
           <Nav.Link href="/Module/Info">
             <img
               className="icon"
+              title="MY Information"
               src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-mypage.svg"
             />
           </Nav.Link>
           <Nav.Link href="/Module/Recent">
             <img
               className="icon"
+              title="Recent Item"
               src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-recent.svg"
             />
           </Nav.Link>
           <Nav.Link href="/Module/Cart">
             <img
               className="icon"
+              title="Cart"
               src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg"
             />
           </Nav.Link>
@@ -110,9 +113,14 @@ const Header = () => {
       <Navbar
         bg="dark"
         variant="dark"
-        fixed="bottom"
-        className="justify-content-end"
+        fixed="top"
+        className="justify-content-between"
+        style={{ marginTop: "74px" }}
       >
+        <Navbar.Brand href="#" style={{ marginLeft: "10px" }}>
+          Category
+        </Navbar.Brand>
+
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Notice">Notice</Nav.Link>
           {login_logout()}

@@ -3,7 +3,6 @@ import Header from "./Header";
 import Upper from "./Upper";
 import Lower from "./Lower";
 import Footer from "./Footer";
-import Browser from "../Browser";
 
 const Layout = ({ children }) => {
   return (
