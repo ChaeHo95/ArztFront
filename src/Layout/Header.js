@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Button, InputGroup } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { Navbar, Nav, Container, Button, InputGroup } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -57,6 +57,17 @@ const Header = () => {
         </>
       );
     }
+  };
+
+  const category1 = () => {
+    // <NavDropdown.Item href="/Action6">Category link 6</NavDropdown.Item>;
+    axios({
+      url: "",
+      method: "get",
+      baseURL: "http://localhost:8088",
+    }).then((response) => {
+      console.log(response.data);
+    });
   };
 
   return (
@@ -117,9 +128,22 @@ const Header = () => {
         className="justify-content-between"
         style={{ marginTop: "74px" }}
       >
-        <Navbar.Brand href="#" style={{ marginLeft: "10px" }}>
-          Category
-        </Navbar.Brand>
+        <Container fluid>
+          <Navbar.Toggle aria-controls="navbar-dark-example" />
+          <Navbar.Collapse id="navbar-dark-example">
+            <Nav>
+              <NavDropdown
+                id="nav-dropdown-dark-example"
+                title="Category"
+                menuVariant="dark"
+              >
+                <NavDropdown.Divider />
+                {category1}
+                <NavDropdown.Divider />
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
 
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Notice">Notice</Nav.Link>

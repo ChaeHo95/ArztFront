@@ -42,9 +42,6 @@ const Info = () => {
         case "mail":
           setMail(value);
           break;
-        case "adress":
-          setAdress(value);
-          break;
       }
     }
   };
@@ -234,7 +231,7 @@ const Info = () => {
         extraAddress !== "" ? ` (${extraAddress})` + `[${data.zonecode}]` : "";
     }
     setAdress(fullAddress);
-    setAdressModal(false);
+    addressclose();
   };
   const addressOpen = () => {
     setAdressModal(true);
