@@ -53,7 +53,7 @@ const Header = () => {
       return (
         <>
           <Nav.Link href="/Module/Login">Login</Nav.Link>
-          <Nav.Link href="/Module/SignUp">Sign Up</Nav.Link>
+          <Nav.Link href="/Module/SignUp">SignUp</Nav.Link>
         </>
       );
     }
@@ -144,7 +144,6 @@ const Header = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Notice">Notice</Nav.Link>
           {login_logout()}
