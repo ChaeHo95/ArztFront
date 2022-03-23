@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Container, Button, InputGroup } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Button,
+  InputGroup,
+  SplitButton,
+} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import $ from "jquery";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
-
+  const [categorys, setCategorys] = useState([]);
+  const [category2s, setCategory2s] = useState([]);
+  const [category3s, setCategory3s] = useState([]);
+  const [category1name, setCategory1Name] = useState("");
+  const [category2name, setCategory2Name] = useState("");
+  const [category, serCategory] = useState(false);
   useEffect(() => {
     if (sessionStorage.getItem("session_key") != null) {
       axios({
@@ -59,14 +72,92 @@ const Header = () => {
     }
   };
 
-  const category1 = () => {
+  useEffect(() => {
     // <NavDropdown.Item href="/Action6">Category link 6</NavDropdown.Item>;
     axios({
-      url: "",
+      url: "/product/category1",
       method: "get",
       baseURL: "http://localhost:8088",
     }).then((response) => {
-      console.log(response.data);
+      setCategorys(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (category) {
+      axios({
+        url: "/product/category2",
+        method: "post",
+        data: {
+          category1: category1name.replace(" >", ""),
+        },
+        baseURL: "http://localhost:8088",
+      }).then((response) => {
+        console.log(response.data);
+        setCategory2s(response.data);
+        serCategory(false);
+      });
+    }
+  });
+  useEffect(() => {
+    if (category && category2name != "") {
+      axios({
+        url: "/product/category3",
+        method: "post",
+        data: {
+          category1: category1name.replace(" >", ""),
+          category2: category2name.replace(" >", ""),
+        },
+        baseURL: "http://localhost:8088",
+      }).then((response) => {
+        console.log(response.data);
+        setCategory3s(response.data);
+        serCategory(false);
+      });
+    }
+  });
+  const category3Open = (e) => {
+    setCategory2Name(e.target.innerText);
+    serCategory(true);
+    $(".category2").css({
+      backgroundColor: "",
+    });
+    $(".category3").css({
+      backgroundColor: "",
+    });
+    e.target.style.backgroundColor = "#28E7FF";
+  };
+  const category2Open = (e) => {
+    setCategory1Name(e.target.innerText);
+    serCategory(true);
+    $(".category1").css({
+      backgroundColor: "",
+    });
+    $(".category2").css({
+      backgroundColor: "",
+    });
+    $(".category3").css({
+      backgroundColor: "",
+    });
+    e.target.style.backgroundColor = "#28E7FF";
+  };
+  const categorysOpen = () => {
+    $(".category1").css({
+      display: "flex",
+    });
+  };
+  const categoryClose = () => {
+    $(".category1").css({
+      display: "none",
+      backgroundColor: "",
+    });
+    $(".category2").css({
+      display: "none",
+      backgroundColor: "",
+    });
+    $(".category3").css({
+      display: "none",
+      backgroundColor: "",
     });
   };
 
@@ -131,16 +222,11 @@ const Header = () => {
         <Container fluid>
           <Navbar.Toggle aria-controls="navbar-dark-example" />
           <Navbar.Collapse id="navbar-dark-example">
-            <Nav>
-              <NavDropdown
-                id="nav-dropdown-dark-example"
-                title="Category"
-                menuVariant="dark"
-              >
-                <NavDropdown.Divider />
-                {category1}
-                <NavDropdown.Divider />
-              </NavDropdown>
+            <Nav
+              style={{ color: "rgba(255, 255, 255, 0.55)", cursor: "pointer" }}
+              onClick={categorysOpen}
+            >
+              CATEGORY
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -150,6 +236,51 @@ const Header = () => {
           <Nav.Link href="/Module/Global">Global</Nav.Link>
         </Nav>
       </Navbar>
+      <div onMouseLeave={categoryClose} className="categorys">
+        <div>
+          <div className="category1s">
+            {categorys.map((category, id) => {
+              return (
+                <button
+                  className="category1"
+                  key={id}
+                  style={{ display: "none" }}
+                  onClick={category2Open}
+                >
+                  {category + " >"}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        <div className="category2s">
+          {category2s.map((category, id) => {
+            return (
+              <button
+                className="category2"
+                key={id}
+                style={{ display: "flex" }}
+                onClick={category3Open}
+              >
+                {category + " >"}
+              </button>
+            );
+          })}
+        </div>
+        <div className="category3s">
+          {category3s.map((category, id) => {
+            return (
+              <button
+                className="category3"
+                key={id}
+                style={{ display: "flex" }}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </header>
   );
 };
