@@ -5,6 +5,7 @@ import NotFound from "./Module/NotFound";
 import Writer from "./Module/Writer";
 import { Info, Recent, Cart, Notice, Login, SignUp, Global } from "./Module/";
 import Layout from "./Layout/Layout";
+import Detail from "./Module/Detail";
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route exact path="/Module/SignUp" element={<SignUp />} />
         <Route exact path="/Module/Global" element={<Global />} />
         <Route exact path="/Module/Writer" element={<Writer />} />
+        <Route exact path="/Module/Detail" element={<Detail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
