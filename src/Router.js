@@ -3,12 +3,20 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./Module/NotFound";
 import Writer from "./Module/Writer";
-import { Info, Recent, Cart, Notice, Login, SignUp, Global } from "./Module/";
+import {
+  Info,
+  Recent,
+  Cart,
+  Notice,
+  Login,
+  SignUp,
+  Global,
+  Product,
+  Products,
+} from "./Module/";
 import Layout from "./Layout/Layout";
 
 const App = () => {
-
-
   return (
     <div className="App">
       <Routes>
@@ -21,6 +29,8 @@ const App = () => {
         <Route exact path="/Module/SignUp" element={<SignUp />} />
         <Route exact path="/Module/Global" element={<Global />} />
         <Route exact path="/Module/Writer" element={<Writer />} />
+        <Route exact path="/Module/Product" element={<Product />} />
+        <Route exact path="/Module/Products" element={<Products />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

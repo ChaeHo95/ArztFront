@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  Button,
-  InputGroup,
-  SplitButton,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Button, InputGroup } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import $ from "jquery";
 
 const Header = () => {
@@ -73,7 +65,6 @@ const Header = () => {
   };
 
   useEffect(() => {
-    // <NavDropdown.Item href="/Action6">Category link 6</NavDropdown.Item>;
     axios({
       url: "/product/category1",
       method: "get",
@@ -93,7 +84,6 @@ const Header = () => {
         },
         baseURL: "http://localhost:8088",
       }).then((response) => {
-        console.log(response.data);
         setCategory2s(response.data);
         serCategory(false);
       });
@@ -110,7 +100,6 @@ const Header = () => {
         },
         baseURL: "http://localhost:8088",
       }).then((response) => {
-        console.log(response.data);
         setCategory3s(response.data);
         serCategory(false);
       });
@@ -126,6 +115,9 @@ const Header = () => {
       backgroundColor: "",
     });
     e.target.style.backgroundColor = "#28E7FF";
+    $(".category3").css({
+      display: "flex",
+    });
   };
   const category2Open = (e) => {
     setCategory1Name(e.target.innerText);
@@ -140,13 +132,24 @@ const Header = () => {
       backgroundColor: "",
     });
     e.target.style.backgroundColor = "#28E7FF";
+    $(".category2").css({
+      display: "flex",
+    });
   };
   const categorysOpen = () => {
+    $(".categorys").css({
+      display: "flex",
+    });
     $(".category1").css({
       display: "flex",
     });
   };
   const categoryClose = () => {
+    setCategory1Name("");
+    setCategory2Name("");
+    $(".categorys").css({
+      display: "none",
+    });
     $(".category1").css({
       display: "none",
       backgroundColor: "",
@@ -159,6 +162,9 @@ const Header = () => {
       display: "none",
       backgroundColor: "",
     });
+  };
+  const categoryProduct = (e) => {
+    console.log(category1name, category2name, e.target.innerText);
   };
 
   return (
@@ -236,51 +242,61 @@ const Header = () => {
           <Nav.Link href="/Module/Global">Global</Nav.Link>
         </Nav>
       </Navbar>
-      <div onMouseLeave={categoryClose} className="categorys">
-        <div>
-          <div className="category1s">
-            {categorys.map((category, id) => {
+      <Navbar
+        bg="dark"
+        variant="dark"
+        fixed="top"
+        className="justify-content-between"
+        style={{ marginTop: "74px", width: "0" }}
+        onMouseLeave={categoryClose}
+      >
+        <div className="categorys">
+          <div>
+            <div className="category1s">
+              {categorys.map((category, id) => {
+                return (
+                  <button
+                    className="category1"
+                    key={id}
+                    style={{ display: "none" }}
+                    onClick={category2Open}
+                  >
+                    {category + " >"}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="category2s">
+            {category2s.map((category, id) => {
               return (
                 <button
-                  className="category1"
+                  className="category2"
                   key={id}
-                  style={{ display: "none" }}
-                  onClick={category2Open}
+                  style={{ display: "flex" }}
+                  onClick={category3Open}
                 >
                   {category + " >"}
                 </button>
               );
             })}
           </div>
+          <div className="category3s">
+            {category3s.map((category, id) => {
+              return (
+                <button
+                  className="category3"
+                  key={id}
+                  style={{ display: "flex" }}
+                  onClick={categoryProduct}
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div>
         </div>
-        <div className="category2s">
-          {category2s.map((category, id) => {
-            return (
-              <button
-                className="category2"
-                key={id}
-                style={{ display: "flex" }}
-                onClick={category3Open}
-              >
-                {category + " >"}
-              </button>
-            );
-          })}
-        </div>
-        <div className="category3s">
-          {category3s.map((category, id) => {
-            return (
-              <button
-                className="category3"
-                key={id}
-                style={{ display: "flex" }}
-              >
-                {category}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      </Navbar>
     </header>
   );
 };
