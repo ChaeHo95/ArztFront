@@ -13,7 +13,8 @@ import {
   Global,
   Product,
   Products,
-  Detail
+  Detail,
+  Admin
 } from "./Module/";
 import Layout from "./Layout/Layout";
 
@@ -33,6 +34,7 @@ const App = () => {
         <Route exact path="/Module/Product" element={<Product />} />
         <Route exact path="/Module/Products" element={<Products />} />
         <Route exact path="/Module/Detail" element={<Detail />} />
+        <Route exact path="/Module/Admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

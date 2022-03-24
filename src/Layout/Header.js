@@ -176,7 +176,7 @@ const Header = () => {
         className="justify-content-end"
       >
         <Navbar.Brand href="/" style={{ marginLeft: "10px" }}>
-          <h1>Artz</h1>
+          <h1>Arzt</h1>
         </Navbar.Brand>
 
         <InputGroup className="justify-content-center">

@@ -6,7 +6,7 @@ const Footer = () => {
     <Container>
       <footer className="ph3 ph4-ns pv6 bt b--black-10 black-70">
         <a href="mailto:" className="link b f3 f2-ns dim black-70 lh-solid">
-          Artz@Shop.Mall
+          Arzt@Shop.Mall
         </a>
         <p className="f6 db b ttu lh-solid">© 2022 COMPANY Inc.</p>
         <div className="mt5">

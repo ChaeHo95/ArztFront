@@ -8,3 +8,4 @@ export { default as Global } from "./Global";
 export { default as Product } from "./Product";
 export { default as Products } from "./Products";
 export { default as Detail } from "./Detail";
+export { default as Admin } from "./Admin";
