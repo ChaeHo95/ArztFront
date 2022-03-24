@@ -7,3 +7,4 @@ export { default as SignUp } from "./SignUp";
 export { default as Global } from "./Global";
 export { default as Product } from "./Product";
 export { default as Products } from "./Products";
+export { default as Detail } from "./Detail";

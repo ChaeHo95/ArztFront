@@ -84,8 +84,8 @@ const Notice = () => {
                       style={{
                         padding: "1%"
                       }}
-                    ><a href="/Module/detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.bno}</a></td>
-                    <td><a href="/Module/detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.subject}</a></td>
+                    ><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.bno}</a></td>
+                    <td><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.subject}</a></td>
                     <td>{statement.writer}</td>
                     <td>{parsedDate}</td>
                   </tr>

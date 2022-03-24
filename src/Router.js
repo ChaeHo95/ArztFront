@@ -13,6 +13,7 @@ import {
   Global,
   Product,
   Products,
+  Detail
 } from "./Module/";
 import Layout from "./Layout/Layout";
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route exact path="/Module/Writer" element={<Writer />} />
         <Route exact path="/Module/Product" element={<Product />} />
         <Route exact path="/Module/Products" element={<Products />} />
+        <Route exact path="/Module/Detail" element={<Detail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

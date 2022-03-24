@@ -45,7 +45,7 @@ const Detail = () => {
                 marginTop: '200px'
             }}>
 
-            <h5 >Notice</h5>
+            <h5 >Detail</h5>
             <article className="cf ph3 ph5-ns pv5">
                 <table className="f6 w-100 mw9 center" cellSpacing="0">
 
