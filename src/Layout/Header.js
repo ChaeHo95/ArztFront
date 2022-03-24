@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 import $ from "jquery";
 
+
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [categorys, setCategorys] = useState([]);
@@ -192,7 +193,7 @@ const Header = () => {
             Search
           </Button>
         </InputGroup>
-
+        <Button href="/Module/Admin" variant="outline-secondary">Admin</Button>
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Info">
             <img

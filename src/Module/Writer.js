@@ -47,7 +47,7 @@ const Writer = () => {
         <Container style={{
             marginTop: '200px',
             textAlign: 'center',
-            maxWidth: '600px'
+            maxWidth: '800px'
         }}>
             <h5>Writer</h5>
             <InputGroup className="mb-3">
