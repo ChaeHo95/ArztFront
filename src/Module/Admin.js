@@ -209,7 +209,7 @@ const Admin = () => {
                             />
                         </InputGroup>
                         <InputGroup className="mb-3">
-                            <InputGroup.Text>이미지</InputGroup.Text>
+                            <InputGroup.Text>이미지</InputGroup.Text>&nbsp;
                             <label className='fileupload' for="input-file">
                             </label>
                             <input type="file" id="input-file" />
