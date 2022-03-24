@@ -1,33 +1,82 @@
-import react from 'react';
-import { Container } from 'react-bootstrap';
-import Footer from '../Layout/Footer';
+import axios from "axios";
+import { react, useEffect, useState } from "react";
+import { React } from "react";
+import { Container, Nav } from "react-bootstrap";
+import Footer from "../Layout/Footer";
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button'
+
 
 const Writer = () => {
-  return(
-    <Container>
-      <div style={{textAlign:'center'}}>
-        <article class="cf ph3 ph5-ns pv5">
-          <header class="fn fl-ns w-50-ns pr4-ns">
-            <h1 class="f2 lh-title fw9 mb3 mt0 pt3 bt bw2">
-              On Artz Shopmall
-            </h1>
-            <time class="f6 ttu tracked gray">Sometime before 2022</time>
-          </header>
-            <div class="fn fl-ns w-50-ns">
-              <p class="f5 lh-copy measure">
-                All typography consists of letters. These appear either in the form of a
-                smoothly running sentence or as an assembly of lines, which may even have
-                contrasting shapes. Good typog- raphy begins, and this is no minor
-                matter, with the typeset- ting of a single line of text in a book or a
-                newspaper. Using exactly the same typeface, it is possible to create either
-                a pleasant line, easily read, or an onerous one. Spacing, if it is too wide
-                or too compressed, will spoil almost any typeface.
-              </p>
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+
+    const targetting = (e) => {
+        const { name, value } = e.target
+
+        switch (name) {
+            case "title":
+                setTitle(value)
+                break;
+            case "content":
+                setContent(value)
+                break;
+        }
+    }
+    // (date = null, bno = null, subject = asd, content = dsa, writer = null)
+    const contentWriter = () => {
+        axios({
+            url: "/board/insert",
+            method: "POST",
+            data: {
+
+                subject: title,
+                content: content,
+                writer: "우앙"
+            },
+            baseURL: "http://localhost:8088",
+        }).then((response) => {
+            console.log(response.data)
+        })
+    }
+
+
+    return (
+
+        <Container style={{
+            marginTop: '200px',
+            textAlign: 'center',
+            maxWidth: '600px'
+        }}>
+            <h5>Writer</h5>
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">제목</InputGroup.Text>
+                <FormControl
+                    placeholder="Title"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    name="title"
+                    onChange={targetting}
+                />
+            </InputGroup>
+            <InputGroup>
+                <InputGroup.Text>내용</InputGroup.Text>
+                <FormControl
+                    placeholder="Content"
+                    name="content"
+                    as="textarea"
+                    rows={12}
+                    aria-label="With textarea"
+                    onChange={targetting} />
+            </InputGroup>
+            <div className="Btn-right">
+                <Button href="/Module/Notice" variant="dark" onClick={contentWriter}>글작성</Button>
             </div>
-        </article>
-      </div>
-      <Footer/>
-    </Container>
-  )
-}
+
+            <Footer />
+        </Container>
+
+    );
+};
 export default Writer;
