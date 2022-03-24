@@ -223,16 +223,16 @@ const Header = () => {
         variant="dark"
         fixed="top"
         className="justify-content-between"
-        style={{ marginTop: "74px" }}
+        style={{ marginTop: "72px" }}
       >
         <Container fluid>
           <Navbar.Toggle aria-controls="navbar-dark-example" />
           <Navbar.Collapse id="navbar-dark-example">
             <Nav
               style={{ color: "rgba(255, 255, 255, 0.55)", cursor: "pointer" }}
-              onClick={categorysOpen}
+              onMouseOver={categorysOpen}
             >
-              CATEGORY
+              CATEGORY ▼
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -247,19 +247,19 @@ const Header = () => {
         variant="dark"
         fixed="top"
         className="justify-content-between"
-        style={{ marginTop: "74px", width: "0" }}
+        style={{ marginTop: "68px", width: "0" }}
         onMouseLeave={categoryClose}
       >
         <div className="categorys">
           <div>
-            <div className="category1s">
+            <div className="category1s has-children">
               {categorys.map((category, id) => {
                 return (
                   <button
-                    className="category1"
+                    className="category1 dropdown"
                     key={id}
                     style={{ display: "none" }}
-                    onClick={category2Open}
+                    onMouseOver={category2Open}
                   >
                     {category + " >"}
                   </button>
@@ -267,28 +267,28 @@ const Header = () => {
               })}
             </div>
           </div>
-          <div className="category2s">
+          <div className="category2s has-children">
             {category2s.map((category, id) => {
               return (
                 <button
-                  className="category2"
+                  className="category2 dropdown"
                   key={id}
                   style={{ display: "flex" }}
-                  onClick={category3Open}
+                  onMouseOver={category3Open}
                 >
                   {category + " >"}
                 </button>
               );
             })}
           </div>
-          <div className="category3s">
+          <div className="category3s has-children">
             {category3s.map((category, id) => {
               return (
                 <button
-                  className="category3"
+                  className="category3 dropdown"
                   key={id}
                   style={{ display: "flex" }}
-                  onClick={categoryProduct}
+                  onMouseOver={categoryProduct}
                 >
                   {category}
                 </button>
