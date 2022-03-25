@@ -3,9 +3,8 @@ import { react, useEffect, useState } from "react";
 import { React } from "react";
 import { Container, Nav } from "react-bootstrap";
 import Footer from "../Layout/Footer";
-import Button from 'react-bootstrap/Button'
-import Pagination from 'react-bootstrap/Pagination'
-import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Pagination from "react-bootstrap/Pagination";
 
 let active = 1;
 let items = [];
@@ -13,7 +12,7 @@ for (let number = 1; number <= 5; number++) {
   items.push(
     <Pagination.Item key={number} active={number === active}>
       {number}
-    </Pagination.Item>,
+    </Pagination.Item>
   );
 }
 
@@ -24,41 +23,32 @@ const Notice = () => {
     axios({
       url: "/board/show",
       method: "GET",
-      baseURL: "http://localhost:8088"
-    })
-      .then((response) => {
-        setData(response.data)
-        console.log(response.data)
-      }
-      )
-  }, [])
+      baseURL: "http://localhost:8088",
+    }).then((response) => {
+      setData(response.data);
+    });
+  }, []);
 
   function addPadding(num) {
-    return num < 10
-      ? `0${num}`
-      : num
+    return num < 10 ? `0${num}` : num;
   }
 
   function getdate(date) {
-    const d = new Date(date)
-    console.log(d.getFullYear(), d.getMonth() + 1, d.getDate())
-    console.log(d.getHours(), d.getMinutes(), d.getSeconds())
+    const d = new Date(date);
 
     return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${addPadding(
       d.getHours()
-    )}:${addPadding(d.getMinutes())}:${addPadding(d.getSeconds())}`
-
+    )}:${addPadding(d.getMinutes())}:${addPadding(d.getSeconds())}`;
   }
   return (
-
     <Container
       style={{
         textAlign: "center",
-        marginTop: '200px'
-      }}>
-
-      <h5 >Notice</h5>
-      <article className="cf ph3" >
+        marginTop: "200px",
+      }}
+    >
+      <h5>Notice</h5>
+      <article className="cf ph3">
         <table className="f6 w-100 mw9 center" cellSpacing="0">
           <thead style={{ textAlign: "center" }}>
             <tr className="stripe-dark">
@@ -66,40 +56,52 @@ const Notice = () => {
               <th className="pa3 bg-white">제목</th>
               <th className="pa3 bg-white">작정자</th>
               <th className="pa3 bg-white">작성일</th>
-
             </tr>
           </thead>
           {/* <Link to={{ pathname: "/Module/detail" }} style={{ textDecoration: 'none', color: 'black' }}> */}
           <tbody>
-            {
-              data.length !== 0 && data.map(statement => {
-                const parsedDate = getdate(statement.date)
-                console.log('parsed date: ', parsedDate)
+            {data.length !== 0 &&
+              data.map((statement) => {
+                const parsedDate = getdate(statement.date);
+                console.log("parsed date: ", parsedDate);
                 return (
                   <tr className="stripe-dark">
-                    <td className="pa3"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.bno}</a></td>
-                    <td className="pa3"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.subject}</a></td>
+                    <td className="pa3">
+                      <a
+                        href="/Module/Detail"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        {statement.bno}
+                      </a>
+                    </td>
+                    <td className="pa3">
+                      <a
+                        href="/Module/Detail"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        {statement.subject}
+                      </a>
+                    </td>
                     <td className="pa3">{statement.writer}</td>
                     <td className="pa3">{parsedDate}</td>
                   </tr>
-                )
-              })
-            }
+                );
+              })}
           </tbody>
-          {/* </Link> */}
         </table>
         <div style={{ textAlign: "right" }}>
-          <Button href="/Module/Writer" variant="dark">글쓰기</Button>
+          <Button href="/Module/Writer" variant="dark">
+            글쓰기
+          </Button>
         </div>
         <div className="fn fl-ns w-50-ns">
           <p className="f5 lh-copy measure"></p>
         </div>
       </article>
 
-      <Pagination size="sm">
-        {items}</Pagination>
+      <Pagination size="sm">{items}</Pagination>
       <Footer />
-    </Container >
+    </Container>
   );
 };
 export default Notice;

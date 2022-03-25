@@ -1,6 +1,6 @@
-import { Container } from 'react-bootstrap';
-import Footer from '../Layout/Footer';
-import Pagination from 'react-bootstrap/Pagination'
+import { Container } from "react-bootstrap";
+import Footer from "../Layout/Footer";
+import Pagination from "react-bootstrap/Pagination";
 
 let active = 1;
 let items = [];
@@ -8,16 +8,14 @@ for (let number = 1; number <= 5; number++) {
   items.push(
     <Pagination.Item key={number} active={number === active}>
       {number}
-    </Pagination.Item>,
+    </Pagination.Item>
   );
 }
 
 const Cart = () => {
   return (
-
     <Container>
-      <div className="title">
-        Cart List</div>
+      <div className="title">Cart List</div>
       <div className="pa1">
         <div className="overflow-auto">
           <table className="f6 w-100 mw9 center" cellSpacing="0">
@@ -73,7 +71,7 @@ const Cart = () => {
       <Pagination size="sm">{items}</Pagination>
       <Footer />
     </Container>
-  )
-}
+  );
+};
 
 export default Cart;

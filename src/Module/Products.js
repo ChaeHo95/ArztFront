@@ -18,6 +18,7 @@ const Products = () => {
         : sessionStorage.getItem("category2")
     );
     setCategory3(sessionStorage.getItem("category3"));
+
     axios({
       url: "/product/products",
       method: "post",
@@ -30,7 +31,12 @@ const Products = () => {
     }).then((response) => {
       setProducts(response.data);
     });
-  });
+  }, []);
+
+  const productOpen = (e) => {
+    sessionStorage.setItem("product_id", e.target.alt);
+    window.location.href = "/Module/Product";
+  };
 
   return (
     <>
@@ -50,28 +56,38 @@ const Products = () => {
             {products.map((product, id) => {
               return (
                 <div key={id} style={{ width: "280px", margin: "20px" }}>
-                  <a href="/Module/Product" className="db link dim tc">
+                  <div className="db link dim tc">
                     <img
                       src={product.image}
                       className="w-100 db outline black-10"
                       style={{
                         border: "5px solid rgba(128, 128, 128, .6)",
                         borderRadius: "30px",
+                        cursor: "pointer",
                       }}
+                      alt={product.product_id}
+                      onClick={productOpen}
                     />
                     <dl className="mt2 f6 lh-copy">
                       <dt
                         className="ml0 gray truncate w-100"
                         dangerouslySetInnerHTML={{ __html: product.title }}
+                        style={{ cursor: "default" }}
                       ></dt>
-                      <dt className="ml0 gray truncate w-100">
+                      <dt
+                        className="ml0 gray truncate w-100"
+                        style={{ cursor: "default" }}
+                      >
                         {product.brand}
                       </dt>
-                      <dd className="ml0 gray truncate w-100">
+                      <dd
+                        className="ml0 gray truncate w-100"
+                        style={{ cursor: "default" }}
+                      >
                         {product.lprice}
                       </dd>
                     </dl>
-                  </a>
+                  </div>
                 </div>
               );
             })}
