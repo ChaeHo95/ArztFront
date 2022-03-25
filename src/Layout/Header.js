@@ -251,12 +251,7 @@ const Header = () => {
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Notice">Notice</Nav.Link>
           {login_logout()}
-          <Nav.Link href="/Module/Global">Global▼
-            
-              <Dropdown.Item href="#/action-1">English</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Korean</Dropdown.Item>
-           
-          </Nav.Link>
+          <Nav.Link href="/Module/Global">Global▼</Nav.Link>
         </Nav>
       </Navbar>
       <Navbar

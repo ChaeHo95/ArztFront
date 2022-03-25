@@ -74,7 +74,7 @@ const Product = () => {
                 사이즈
               </label>
               
-              <select style={{width:"385px", paddingLeft: "15px", height:"30px", textAlign:"center"}} id="size">
+              <select style={{width:"385px", paddingLeft: "15px", height:"40px", textAlign:"center"}} id="size">
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -133,6 +133,7 @@ const Product = () => {
           </div>
         </div>
         <h5 className="fw-bolder mb-4">Related products</h5>
+
         <div className="row gx-4 gx-lg-5 row-cols-3 row-cols-md-3 row-cols-xl-4 justify-content-center">
           <div className="fl w-50 w-25-m w-20-l pa2">
             <a href="/Module/Product" className="db link dim tc">
@@ -263,6 +264,7 @@ const Product = () => {
             </a>
           </div>
         </div>
+        
       </main>
       <Footer />
     </Container>

@@ -9,14 +9,14 @@ const Layout = ({ children }) => {
     <>
       <Header />
       <div style={{ textAlign: "center" }}>
-        <h4>Event Slider</h4>
+        <h4>Event</h4>
       </div>
       <Upper />
       {children}
       <br></br>
       <br></br>
       <div style={{ textAlign: "center" }}>
-        <h4>Product List</h4>
+        <h4></h4>
       </div>
       <Lower />
       <Footer />
