@@ -5,15 +5,13 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 import $ from "jquery";
 
-
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [categorys, setCategorys] = useState([]);
   const [category2s, setCategory2s] = useState([]);
   const [category3s, setCategory3s] = useState([]);
-  const [category1name, setCategory1Name] = useState("");
-  const [category2name, setCategory2Name] = useState("");
-  const [category, serCategory] = useState(false);
+  const [category, setCategory] = useState(false);
+
   useEffect(() => {
     if (sessionStorage.getItem("session_key") != null) {
       axios({
@@ -76,39 +74,43 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    if (category) {
+    if (category && sessionStorage.getItem("category1") != null) {
       axios({
         url: "/product/category2",
         method: "post",
         data: {
-          category1: category1name.replace(" >", ""),
+          category1: sessionStorage.getItem("category1"),
         },
         baseURL: "http://localhost:8088",
       }).then((response) => {
         setCategory2s(response.data);
-        serCategory(false);
+        setCategory(false);
       });
     }
   });
   useEffect(() => {
-    if (category && category2name != "") {
+    if (category && sessionStorage.getItem("category2") != null) {
       axios({
         url: "/product/category3",
         method: "post",
         data: {
-          category1: category1name.replace(" >", ""),
-          category2: category2name.replace(" >", ""),
+          category1: sessionStorage.getItem("category1"),
+          category2: sessionStorage.getItem("category2"),
         },
         baseURL: "http://localhost:8088",
       }).then((response) => {
         setCategory3s(response.data);
-        serCategory(false);
+        setCategory(false);
+        if (response.data[0] == null) {
+          console.log(response.data[0]);
+          window.location.href = "/Module/Products";
+        }
       });
     }
   });
   const category3Open = (e) => {
-    setCategory2Name(e.target.innerText);
-    serCategory(true);
+    sessionStorage.setItem("category2", e.target.innerText.replace(" >", ""));
+    setCategory(true);
     $(".category2").css({
       backgroundColor: "",
     });
@@ -121,8 +123,8 @@ const Header = () => {
     });
   };
   const category2Open = (e) => {
-    setCategory1Name(e.target.innerText);
-    serCategory(true);
+    sessionStorage.setItem("category1", e.target.innerText.replace(" >", ""));
+    setCategory(true);
     $(".category1").css({
       backgroundColor: "",
     });
@@ -144,10 +146,11 @@ const Header = () => {
     $(".category1").css({
       display: "flex",
     });
+    sessionStorage.removeItem("category1");
+    sessionStorage.removeItem("category2");
+    sessionStorage.removeItem("category3");
   };
   const categoryClose = () => {
-    setCategory1Name("");
-    setCategory2Name("");
     $(".categorys").css({
       display: "none",
     });
@@ -165,7 +168,8 @@ const Header = () => {
     });
   };
   const categoryProduct = (e) => {
-    console.log(category1name, category2name, e.target.innerText);
+    sessionStorage.setItem("category3", e.target.innerText.replace(" >", ""));
+    window.location.href = "/Module/Products";
   };
 
   return (
@@ -177,7 +181,7 @@ const Header = () => {
         className="justify-content-end"
       >
         <Navbar.Brand href="/" style={{ marginLeft: "10px" }}>
-          <h1>Arzt</h1>
+          <h1>Artz</h1>
         </Navbar.Brand>
 
         <InputGroup className="justify-content-center">
@@ -193,7 +197,7 @@ const Header = () => {
             Search
           </Button>
         </InputGroup>
-        <Button href="/Module/Admin" variant="outline-secondary">Admin</Button>
+
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Info">
             <img
@@ -224,16 +228,16 @@ const Header = () => {
         variant="dark"
         fixed="top"
         className="justify-content-between"
-        style={{ marginTop: "72px" }}
+        style={{ marginTop: "74px" }}
       >
         <Container fluid>
           <Navbar.Toggle aria-controls="navbar-dark-example" />
           <Navbar.Collapse id="navbar-dark-example">
             <Nav
               style={{ color: "rgba(255, 255, 255, 0.55)", cursor: "pointer" }}
-              onMouseOver={categorysOpen}
+              onClick={categorysOpen}
             >
-              CATEGORY ▼
+              CATEGORY
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -248,19 +252,19 @@ const Header = () => {
         variant="dark"
         fixed="top"
         className="justify-content-between"
-        style={{ marginTop: "68px", width: "0" }}
+        style={{ marginTop: "74px", width: "0" }}
         onMouseLeave={categoryClose}
       >
         <div className="categorys">
           <div>
-            <div className="category1s has-children">
+            <div className="category1s">
               {categorys.map((category, id) => {
                 return (
                   <button
-                    className="category1 dropdown"
+                    className="category1"
                     key={id}
                     style={{ display: "none" }}
-                    onMouseOver={category2Open}
+                    onClick={category2Open}
                   >
                     {category + " >"}
                   </button>
@@ -268,28 +272,29 @@ const Header = () => {
               })}
             </div>
           </div>
-          <div className="category2s has-children">
+          <div className="category2s">
             {category2s.map((category, id) => {
               return (
                 <button
-                  className="category2 dropdown"
+                  className="category2"
                   key={id}
                   style={{ display: "flex" }}
-                  onMouseOver={category3Open}
+                  onClick={category3Open}
                 >
                   {category + " >"}
                 </button>
               );
             })}
           </div>
-          <div className="category3s has-children">
+          <div className="category3s">
             {category3s.map((category, id) => {
               return (
                 <button
-                  className="category3 dropdown"
+                  className="category3"
                   key={id}
                   style={{ display: "flex" }}
-                  onMouseOver={categoryProduct}
+                  onClick={categoryProduct}
+                  href="/Module/Products"
                 >
                   {category}
                 </button>
