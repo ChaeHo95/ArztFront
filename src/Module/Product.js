@@ -7,7 +7,26 @@ import axios from "axios";
 const Product = () => {
   const [product, setProduct] = useState({});
   const [cnt, setCnt] = useState(1);
+
+  const [category1, setCategory1] = useState("");
+  const [category2, setCategory2] = useState("");
+  const [category3, setCategory3] = useState("");
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
+
+    setCategory1(
+      sessionStorage.getItem("category2") != null
+        ? sessionStorage.getItem("category1") + "  >  "
+        : sessionStorage.getItem("category1")
+    );
+    setCategory2(
+      sessionStorage.getItem("category3") != null
+        ? sessionStorage.getItem("category2") + "  >  "
+        : sessionStorage.getItem("category2")
+    );
+    setCategory3(sessionStorage.getItem("category3"));
+
     axios({
       url: "/product/product",
       method: "post",
@@ -29,24 +48,33 @@ const Product = () => {
         textAlign: "center",
       }}
     >
+      <div
+        style={{ marginTop: "135px", marginLeft: "10px", fontSize: "1.2rem", textAlign:"left" }}
+      >
+        {category1}
+        {category2}
+        {category3}
+      </div>
       <main className="mw6 center">
         <div className="dt mw6 pv4 pv5-m pv6-ns">
           <div className="dtc v-mid">
             <Image fluid src={product.image} className="mw9" />
           </div>
           <div className="dtc v-top pl3">
-            <text dangerouslySetInnerHTML={{ __html: product.title }} />
+            <h6 dangerouslySetInnerHTML={{ __html: product.title }} />
             <div className="mv3">
               <label className="db fw6 lh-copy f6" htmlFor="size">
                 사이즈
               </label>
-              <select id="size">
+              
+              <select style={{width:"385px", paddingLeft: "15px", height:"30px", textAlign:"center"}} id="size">
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
                 <option value="XL">XL</option>
-              </select>
+                </select>
+              
             </div>
             <div className="mv3">
               <label className="db fw6 lh-copy f6" htmlFor="quanity">
@@ -57,7 +85,7 @@ const Product = () => {
                 disabled="disabled"
                 name="quanity"
                 value={cnt}
-                style={{ textAlign: "center", width: "358px" }}
+                style={{ textAlign: "center", paddingLeft: "35px", width: "358px" }}
               />
               <button
                 onClick={cntUp}

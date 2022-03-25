@@ -1,3 +1,4 @@
+import { Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const Products = () => {
@@ -39,9 +40,13 @@ const Products = () => {
   };
 
   return (
-    <>
+    <Container
+      style={{
+        textAlign: "center",
+      }}
+    >
       <div
-        style={{ marginTop: "135px", marginLeft: "10px", fontSize: "1.2rem" }}
+        style={{ marginTop: "135px", marginLeft: "10px", fontSize: "1.2rem", textAlign: "left" }}
       >
         {category1}
         {category2}
@@ -94,7 +99,7 @@ const Products = () => {
           </div>
         </div>
       </main>
-    </>
+    </Container>
   );
 };
 export default Products;

@@ -36,6 +36,9 @@ const Cart = () => {
                 <td className="pa3">1</td>
                 <td className="pa3">532474</td>
               </tr>
+
+
+              
               <tr className="stripe-dark">
                 <td className="pa3">2</td>
                 <td className="pa3">Category 1</td>

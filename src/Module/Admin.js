@@ -14,7 +14,12 @@ const Admin = () => {
 
     const [data, setData] = useState([]);
 
+
+
     useEffect(() => {
+
+
+        
         axios({
             url: "/member/show",
             method: "GET",
@@ -43,6 +48,9 @@ const Admin = () => {
         )}:${addPadding(d.getMinutes())}:${addPadding(d.getSeconds())}`
 
     }
+
+
+
     return (
 
         <Container style={{

@@ -54,7 +54,7 @@ const Notice = () => {
             <tr className="stripe-dark">
               <th className="pa3 bg-white">번호</th>
               <th className="pa3 bg-white">제목</th>
-              <th className="pa3 bg-white">작정자</th>
+              <th className="pa3 bg-white">작성자</th>
               <th className="pa3 bg-white">작성일</th>
             </tr>
           </thead>
