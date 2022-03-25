@@ -58,6 +58,7 @@ const Notice = () => {
       }}>
 
       <h5 >Notice</h5>
+      <article className="cf ph3" >
         <table className="f6 w-100 mw9 center" cellSpacing="0">
           <thead style={{ textAlign: "center" }}>
             <tr className="stripe-dark">
@@ -65,6 +66,7 @@ const Notice = () => {
               <th className="fw6  pa3 bg-white">제목</th>
               <th className="fw6  pa3 bg-white">작정자</th>
               <th className="fw6  pa3 bg-white">작성일</th>
+
             </tr>
           </thead>
           {/* <Link to={{ pathname: "/Module/detail" }} style={{ textDecoration: 'none', color: 'black' }}> */}
@@ -92,6 +94,8 @@ const Notice = () => {
         <div className="fn fl-ns w-50-ns">
           <p className="f5 lh-copy measure"></p>
         </div>
+      </article>
+
       <Pagination size="sm">
         {items}</Pagination>
       <Footer />
