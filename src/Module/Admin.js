@@ -11,6 +11,46 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const Admin = () => {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios({
+            url: "/board/show",
+            method: "GET",
+            baseURL: "http://localhost:8088"
+        })
+            .then((response) => {
+                setData(response.data)
+                console.log(response.data)
+            }
+            )
+    }, [])
+
+    function addPadding(num) {
+        return num < 10
+            ? `0${num}`
+            : num
+    }
+
+    function getdate(date) {
+        const d = new Date(date)
+        console.log(d.getFullYear(), d.getMonth() + 1, d.getDate())
+        console.log(d.getHours(), d.getMinutes(), d.getSeconds())
+
+        return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${addPadding(
+            d.getHours()
+        )}:${addPadding(d.getMinutes())}:${addPadding(d.getSeconds())}`
+
+    }
+
+
+
+
+
+
+
+
     return (
 
         <Container style={{
@@ -46,7 +86,7 @@ const Admin = () => {
                                     <tbody className="lh-copy">
                                         <tr className="stripe-dark">
                                             <td className="pa3">1</td>
-                                            <td className="pa3">****</td>
+                                            <td className="pa3">statement.user_pwd</td>
                                             <td className="pa3">hassan</td>
                                             <td className="pa3">M</td>
                                             <td className="pa3">010-3333-2222</td>
@@ -80,7 +120,7 @@ const Admin = () => {
                                                 <a class="fw6 db dark-pink link" href="#0">삭제</a>
                                             </div>
                                         </tr>
-                                    </tbody>
+                                    </tbody>                             
                                 </table>
                             </div>
                         </div>
@@ -89,7 +129,6 @@ const Admin = () => {
                     <Accordion.Item eventKey="1" alwaysOpen>
                         <Accordion.Header>상품 관리</Accordion.Header>
                     <Accordion.Body>
-                        
                         <div className="pa1">
                             <div className="overflow-auto">
                                 <table className="f6 w-100 mw9 center" cellSpacing="0">
