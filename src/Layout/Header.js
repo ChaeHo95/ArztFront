@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import $ from "jquery";
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -249,7 +251,12 @@ const Header = () => {
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Notice">Notice</Nav.Link>
           {login_logout()}
-          <Nav.Link href="/Module/Global">Global</Nav.Link>
+          <Nav.Link href="/Module/Global">Global▼
+            
+              <Dropdown.Item href="#/action-1">English</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Korean</Dropdown.Item>
+           
+          </Nav.Link>
         </Nav>
       </Navbar>
       <Navbar

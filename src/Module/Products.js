@@ -69,31 +69,29 @@ const Products = () => {
                         border: "5px solid rgba(128, 128, 128, .6)",
                         borderRadius: "30px",
                         cursor: "pointer",
+                        width: "280px",
+                        height: "280px"
                       }}
                       alt={product.product_id}
                       onClick={productOpen}
                     />
+                  </div>
                     <dl className="mt2 f6 lh-copy">
                       <dt
-                        className="ml0 gray truncate w-100"
+                        className="ml0 truncate w-100"
                         dangerouslySetInnerHTML={{ __html: product.title }}
                         style={{ cursor: "default" }}
                       ></dt>
-                      <dt
-                        className="ml0 gray truncate w-100"
-                        style={{ cursor: "default" }}
-                      >
-                        {product.brand}
-                      </dt>
+                      
                       <dd
-                        className="ml0 gray truncate w-100"
+                        className="ml0 truncate w-100"
                         style={{ cursor: "default" }}
                       >
-                        {product.lprice}
+                      <h5>{product.lprice}</h5>
                       </dd>
                     </dl>
                   </div>
-                </div>
+                
               );
             })}
           </div>

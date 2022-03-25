@@ -58,7 +58,14 @@ const Product = () => {
       <main className="mw6 center">
         <div className="dt mw6 pv4 pv5-m pv6-ns">
           <div className="dtc v-mid">
-            <Image fluid src={product.image} className="mw9" />
+            <Image fluid src={product.image} className="mw9" thumbnail="thumbnail"
+              style={{
+              border: "5px solid rgba(128, 128, 128, .6)",
+              borderRadius: "30px",
+              width: "360px",
+              height: "360px"
+            }} />
+
           </div>
           <div className="dtc v-top pl3">
             <h6 dangerouslySetInnerHTML={{ __html: product.title }} />
