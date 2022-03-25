@@ -3,7 +3,7 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap"); */
 /* @import url("https://fonts.googleapis.com/css2?family=Song+Myung&display=swap"); */
 /* @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap"); */
-/* @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
 
 header {
   /* font-family: 'Playfair Display', serif; */
@@ -13,7 +13,7 @@ body {
   /* background-image: url("./Images/background-img.jpg"); */
   background-size: auto;
   background-color: rgba(255, 255, 255, 0.5);
-  font-family: "Righteous", "Jua", sans-serif;
+  font-family: "Righteous", sans-serif;
   margin-top: 72px;
   padding: 0px;
   position: relative;
@@ -23,6 +23,7 @@ footer {
   margin-top: 100px;
   padding: 100px;
   background-color: rgba(55, 55, 55, 0.3);
+  font-family: "Jua", cursive;
   width: 100%;
   left: 0;
   position: absolute;
@@ -174,7 +175,7 @@ h4 {
 .categorys {
   display: none;
   background: #212529;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 .productsgroup {
   margin: 0 auto;

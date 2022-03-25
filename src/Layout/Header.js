@@ -202,7 +202,7 @@ const Header = () => {
             Search
           </Button>
         </InputGroup>
-
+        <Button href="/Module/Admin" variant="outline-secondary">Admin</Button>
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Info">
             <img
@@ -240,9 +240,9 @@ const Header = () => {
           <Navbar.Collapse id="navbar-dark-example">
             <Nav
               style={{ color: "rgba(255, 255, 255, 0.55)", cursor: "pointer" }}
-              onClick={categorysOpen}
+              onMouseOver={categorysOpen}
             >
-              CATEGORY
+              CATEGORY ▼
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -269,7 +269,7 @@ const Header = () => {
                     className="category1"
                     key={id}
                     style={{ display: "none" }}
-                    onClick={category2Open}
+                    onMouseOver={category2Open}
                   >
                     {category + " >"}
                   </button>
@@ -284,7 +284,7 @@ const Header = () => {
                   className="category2"
                   key={id}
                   style={{ display: "flex" }}
-                  onClick={category3Open}
+                  onMouseOver={category3Open}
                 >
                   {category + " >"}
                 </button>
