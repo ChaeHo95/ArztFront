@@ -84,19 +84,29 @@ const Admin = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="lh-copy">
-                                        <tr className="stripe-dark">
-                                            <td className="pa3">1</td>
-                                            <td className="pa3">statement.user_pwd</td>
-                                            <td className="pa3">hassan</td>
-                                            <td className="pa3">M</td>
-                                            <td className="pa3">010-3333-2222</td>
-                                            <td className="pa3">VFF@GMAIL.COM</td>
-                                            <td className="pa3">서울</td>
-                                            <div class="pa3">
-                                                <a class="fw6 db dark-pink link" href="#0">삭제</a>
-                                            </div>
-                                        </tr>
-                                        <tr className="stripe-dark">
+
+                                        {
+                                            data.length !== 0 && data.map(statement => {
+                                                const parsedDate = getdate(statement.date)
+                                                console.log('parsed date: ', parsedDate)
+                                                return (
+                                                    <tr className="stripe-dark">
+                                                        <td className="pa3">{statement.bno}</td>
+                                                        <td className="pa3">{statement.subject}</td>
+                                                        <td className="pa3">{statement.subject}</td>
+                                                        <td className="pa3">{statement.user_sex}</td>
+                                                        <td className="pa3">{statement.user_phone}</td>
+                                                        <td className="pa3">{statement.user_mail}</td>
+                                                        <td className="pa3">{statement.user_adress}</td>
+                                                        <div class="pa3">
+                                                            <a class="fw6 db dark-pink link" href="#0">삭제</a>
+                                                        </div>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+
+                                        {/* <tr className="stripe-dark">
                                             <td className="pa3">2</td>
                                             <td className="pa3">Category 1</td>
                                             <td className="pa3">taral@</td>
@@ -119,7 +129,7 @@ const Admin = () => {
                                             <div class="pa3">
                                                 <a class="fw6 db dark-pink link" href="#0">삭제</a>
                                             </div>
-                                        </tr>
+                                        </tr> */}
                                     </tbody>                             
                                 </table>
                             </div>

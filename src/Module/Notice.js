@@ -77,10 +77,10 @@ const Notice = () => {
                 console.log('parsed date: ', parsedDate)
                 return (
                   <tr className="stripe-dark">
-                    <td className="pa2"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.bno}</a></td>
-                    <td className="pa2"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.subject}</a></td>
-                    <td className="pa2">{statement.writer}</td>
-                    <td className="pa2">{parsedDate}</td>
+                    <td className="pa3"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.bno}</a></td>
+                    <td className="pa3"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.subject}</a></td>
+                    <td className="pa3">{statement.writer}</td>
+                    <td className="pa3">{parsedDate}</td>
                   </tr>
                 )
               })
