@@ -19,7 +19,7 @@ const Detail = () => {
     const [data, setData, subject, content, writer] = useState([]);
 
     axios({
-        url: "/board/insert",
+        url: "/board/show",
         method: "POST",
         data: {
             subject: subject,
@@ -53,14 +53,18 @@ const Detail = () => {
                         {
                             data.length !== 0 && data.map(statement => {
                                 return (
-                                    <tr>
-                                        <td
-                                            style={{
-                                                padding: "1%"
-                                            }}
-                                            href='location={}'>{statement.subject}</td>
-                                        <td>{statement.content}</td>
+                                    <tr className="stripe-dark">
+                                        <td className="pa3">{statement.content}</td>
+                                        
                                     </tr>
+                                    // <tr>
+                                    //     <td
+                                    //         style={{
+                                    //             padding: "1%"
+                                    //         }}
+                                    //         href='location={}'>{statement.subject}</td>
+                                    //     <td>{statement.content}</td>
+                                    // </tr>
 
                                 )
 
@@ -76,8 +80,6 @@ const Detail = () => {
                 </div>
             </article>
 
-            <Pagination size="sm">
-                {items}</Pagination>
             <Footer />
         </Container>
     );

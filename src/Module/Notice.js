@@ -62,10 +62,10 @@ const Notice = () => {
         <table className="f6 w-100 mw9 center" cellSpacing="0">
           <thead style={{ textAlign: "center" }}>
             <tr className="stripe-dark">
-              <th className="fw6  pa3 bg-white">번호</th>
-              <th className="fw6  pa3 bg-white">제목</th>
-              <th className="fw6  pa3 bg-white">작정자</th>
-              <th className="fw6  pa3 bg-white">작성일</th>
+              <th className="pa3 bg-white">번호</th>
+              <th className="pa3 bg-white">제목</th>
+              <th className="pa3 bg-white">작정자</th>
+              <th className="pa3 bg-white">작성일</th>
 
             </tr>
           </thead>

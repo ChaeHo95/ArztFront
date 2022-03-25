@@ -16,7 +16,7 @@ const Admin = () => {
 
     useEffect(() => {
         axios({
-            url: "/board/show",
+            url: "/member/show",
             method: "GET",
             baseURL: "http://localhost:8088"
         })
@@ -43,14 +43,6 @@ const Admin = () => {
         )}:${addPadding(d.getMinutes())}:${addPadding(d.getSeconds())}`
 
     }
-
-
-
-
-
-
-
-
     return (
 
         <Container style={{
@@ -91,9 +83,9 @@ const Admin = () => {
                                                 console.log('parsed date: ', parsedDate)
                                                 return (
                                                     <tr className="stripe-dark">
-                                                        <td className="pa3">{statement.bno}</td>
-                                                        <td className="pa3">{statement.subject}</td>
-                                                        <td className="pa3">{statement.subject}</td>
+                                                        <td className="pa3">{statement.user_id}</td>
+                                                        <td className="pa3">{statement.user_pwd}</td>
+                                                        <td className="pa3">{statement.user_name}</td>
                                                         <td className="pa3">{statement.user_sex}</td>
                                                         <td className="pa3">{statement.user_phone}</td>
                                                         <td className="pa3">{statement.user_mail}</td>
@@ -105,31 +97,6 @@ const Admin = () => {
                                                 )
                                             })
                                         }
-
-                                        {/* <tr className="stripe-dark">
-                                            <td className="pa3">2</td>
-                                            <td className="pa3">Category 1</td>
-                                            <td className="pa3">taral@</td>
-                                            <td className="pa3">2</td>
-                                            <td className="pa3">23551</td>
-                                            <td className="pa3">23551</td>
-                                            <td className="pa3">23551</td>
-                                            <div class="pa3">
-                                                <a class="fw6 db dark-pink link" href="#0">삭제</a>
-                                            </div>
-                                        </tr>
-                                        <tr className="stripe-dark">
-                                            <td className="pa3">3</td>
-                                            <td className="pa3">Category 1</td>
-                                            <td className="pa3">ty@</td>
-                                            <td className="pa3">1</td>
-                                            <td className="pa3">32444</td>
-                                            <td className="pa3">32444</td>
-                                            <td className="pa3">32444</td>
-                                            <div class="pa3">
-                                                <a class="fw6 db dark-pink link" href="#0">삭제</a>
-                                            </div>
-                                        </tr> */}
                                     </tbody>                             
                                 </table>
                             </div>
@@ -156,42 +123,26 @@ const Admin = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="lh-copy">
-                                        <tr className="stripe-dark">
-                                            <td className="pa3">1</td>
-                                            <td className="pa3">VIVIAN</td>
-                                            <td className="pa3">패션의류</td>
-                                            <td className="pa3">여성의류</td>
-                                            <td className="pa3">티셔츠</td>
-                                            <td className="pa3">532474</td>
-                                            <td className="pa3">네이버</td>
-                                            <div class="pa3">
-                                                <a class="fw6 db dark-pink link" href="#0">삭제</a>
-                                            </div>
-                                        </tr>
-                                        <tr className="stripe-dark">
-                                            <td className="pa3">2</td>
-                                            <td className="pa3">Category 1</td>
-                                            <td className="pa3">taral@</td>
-                                            <td className="pa3">2</td>
-                                            <td className="pa3">23551</td>
-                                            <td className="pa3">23551</td>
-                                            <td className="pa3">23551</td>
-                                            <div class="pa3">
-                                                <a class="fw6 db dark-pink link" href="#0">삭제</a>
-                                            </div>
-                                        </tr>
-                                        <tr className="stripe-dark">
-                                            <td className="pa3">3</td>
-                                            <td className="pa3">Category 1</td>
-                                            <td className="pa3">ty@</td>
-                                            <td className="pa3">1</td>
-                                            <td className="pa3">32444</td>
-                                            <td className="pa3">32444</td>
-                                            <td className="pa3">32444</td>
-                                            <div class="pa3">
-                                                <a class="fw6 db dark-pink link" href="#0">삭제</a>
-                                            </div>
-                                        </tr>
+                                        {
+                                            data.length !== 0 && data.map(statement => {
+                                                const parsedDate = getdate(statement.date)
+                                                console.log('parsed date: ', parsedDate)
+                                                return (
+                                                    <tr className="stripe-dark">
+                                                        <td className="pa3">{statement.user_id}</td>
+                                                        <td className="pa3">{statement.brand}</td>
+                                                        <td className="pa3">{statement.category1}</td>
+                                                        <td className="pa3">{statement.category2}</td>
+                                                        <td className="pa3">{statement.category3}</td>
+                                                        <td className="pa3">{statement.lprice}</td>
+                                                        <td className="pa3">{statement.mallname}</td>
+                                                        <div class="pa3">
+                                                            <a class="fw6 db dark-pink link" href="#0">삭제</a>
+                                                        </div>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
                                     </tbody>
                                 </table>
                             </div>
