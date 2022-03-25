@@ -78,20 +78,13 @@ const Notice = () => {
                 const parsedDate = getdate(statement.date)
                 console.log('parsed date: ', parsedDate)
                 return (
-
-                  <tr>
-                    <td
-                      style={{
-                        padding: "1%"
-                      }}
-                    ><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.bno}</a></td>
-                    <td><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.subject}</a></td>
-                    <td>{statement.writer}</td>
-                    <td>{parsedDate}</td>
+                  <tr className="stripe-dark">
+                    <td className="pa2"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.bno}</a></td>
+                    <td className="pa2"><a href="/Module/Detail" style={{ textDecoration: 'none', color: 'black' }} >{statement.subject}</a></td>
+                    <td className="pa2">{statement.writer}</td>
+                    <td className="pa2">{parsedDate}</td>
                   </tr>
-
                 )
-
               })
             }
           </tbody>
