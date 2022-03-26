@@ -5,6 +5,7 @@ import { Container, Nav } from "react-bootstrap";
 import Footer from "../Layout/Footer";
 import Button from "react-bootstrap/Button";
 import Pagination from "react-bootstrap/Pagination";
+import $ from "jquery";
 
 let active = 1;
 let items = [];
@@ -40,6 +41,30 @@ const Notice = () => {
       d.getHours()
     )}:${addPadding(d.getMinutes())}:${addPadding(d.getSeconds())}`;
   }
+
+  useEffect(() => {
+    axios({
+      url: "/board/show",
+      method: "GET",
+      baseURL: "http://localhost:8088",
+    }).then((response) => {
+      setData(response.data);
+    });
+  }, []);
+
+  const boardOpen = (e) => {
+    console.log(e.target);
+    // sessionStorage.setItem("boardId", e.target.id);
+    // window.location.href = "/Module/Detail";
+    $("#content" + e.target.id).css({
+      display: "flex",
+    });
+  };
+
+  const boardClose = (e) => {
+    e.target.style.display = "none";
+  };
+
   return (
     <Container
       style={{
@@ -47,47 +72,80 @@ const Notice = () => {
         marginTop: "200px",
       }}
     >
-      <h5>Notice</h5>
+      <h5 style={{ cursor: "default" }}>Notice</h5>
       <article className="cf ph3">
         <table className="f6 w-100 mw9 center" cellSpacing="0">
           <thead style={{ textAlign: "center" }}>
             <tr className="stripe-dark">
-              <th className="pa3 bg-white">번호</th>
-              <th className="pa3 bg-white">제목</th>
-              <th className="pa3 bg-white">작성자</th>
-              <th className="pa3 bg-white">작성일</th>
+              <th className="pa3 bg-white" style={{ cursor: "default" }}>
+                번호
+              </th>
+              <th className="pa3 bg-white" style={{ cursor: "default" }}>
+                제목
+              </th>
+              <th className="pa3 bg-white" style={{ cursor: "default" }}>
+                작정자
+              </th>
+              <th className="pa3 bg-white" style={{ cursor: "default" }}>
+                작성일
+              </th>
             </tr>
           </thead>
-          {/* <Link to={{ pathname: "/Module/detail" }} style={{ textDecoration: 'none', color: 'black' }}> */}
-          <tbody>
-            {data.length !== 0 &&
-              data.map((statement) => {
-                const parsedDate = getdate(statement.date);
-                console.log("parsed date: ", parsedDate);
-                return (
-                  <tr className="stripe-dark">
-                    <td className="pa3">
-                      <a
-                        href="/Module/Detail"
-                        style={{ textDecoration: "none", color: "black" }}
-                      >
-                        {statement.bno}
-                      </a>
-                    </td>
-                    <td className="pa3">
-                      <a
-                        href="/Module/Detail"
-                        style={{ textDecoration: "none", color: "black" }}
-                      >
-                        {statement.subject}
-                      </a>
-                    </td>
-                    <td className="pa3">{statement.writer}</td>
-                    <td className="pa3">{parsedDate}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
+          {data.length !== 0 &&
+            data.map((statement, index) => {
+              const parsedDate = getdate(statement.date);
+              return (
+                <>
+                  <tbody>
+                    <tr className="stripe-dark">
+                      <td className="pa3">
+                        <button
+                          id={statement.id}
+                          onClick={boardOpen}
+                          style={{
+                            textDecoration: "none",
+                            border: "0px",
+                            backgroundColor: "rgba(255, 255, 255, 0)",
+                          }}
+                        >
+                          {index + 1}
+                        </button>
+                      </td>
+                      <td className="pa3">
+                        <button
+                          id={statement.id}
+                          onClick={boardOpen}
+                          style={{
+                            textDecoration: "none",
+                            border: "0px",
+                            backgroundColor: "rgba(255, 255, 255, 0)",
+                          }}
+                        >
+                          {statement.subject}
+                        </button>
+                      </td>
+                      <td className="pa3" style={{ cursor: "default" }}>
+                        {statement.writer}
+                      </td>
+                      <td className="pa3" style={{ cursor: "default" }}>
+                        {parsedDate}
+                      </td>
+                    </tr>
+                  </tbody>
+                  <div
+                    id={"content" + statement.id}
+                    style={{
+                      display: "none",
+                      border: "1px solid black",
+                      width: "100px",
+                    }}
+                    onClick={boardClose}
+                  >
+                    {statement.content}
+                  </div>
+                </>
+              );
+            })}
         </table>
         <div style={{ textAlign: "right" }}>
           <Button href="/Module/Writer" variant="dark">

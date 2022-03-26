@@ -23,7 +23,6 @@ const Writer = () => {
         break;
     }
   };
-  // (date = null, bno = null, subject = asd, content = dsa, writer = null)
   const contentWriter = () => {
     axios({
       url: "/board/insert",
