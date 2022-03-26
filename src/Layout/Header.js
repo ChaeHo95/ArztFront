@@ -104,7 +104,6 @@ const Header = () => {
         setCategory3s(response.data);
         setCategory(false);
         if (response.data[0] == null) {
-          sessionStorage.setItem("categoryOpen", true);
           console.log(response.data[0]);
           window.location.href = "/Module/Products";
         }
@@ -175,7 +174,6 @@ const Header = () => {
   };
   const categoryProduct = (e) => {
     sessionStorage.setItem("category3", e.target.innerText.replace(" >", ""));
-    sessionStorage.setItem("categoryOpen", true);
     window.location.href = "/Module/Products";
   };
 

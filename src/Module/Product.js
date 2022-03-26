@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Product = () => {
-  const [product, setProduct] = useState({});
+  const [prod, setProd] = useState({});
   const [cnt, setCnt] = useState(1);
 
   const [category1, setCategory1] = useState("");
@@ -35,11 +35,36 @@ const Product = () => {
       },
       baseURL: "http://localhost:8088",
     }).then((response) => {
-      setProduct(response.data);
+      setProd(response.data);
     });
   }, []);
   const cntUp = () => {
     setCnt(cnt + 1);
+  };
+  const cartDate = () => {
+    if (
+      sessionStorage.getItem("cart") !== null &&
+      sessionStorage
+        .getItem("cart")
+        .includes(sessionStorage.getItem("product_id"))
+    ) {
+      alert("장바구니에 담긴 상품입니다.");
+    } else {
+      sessionStorage.setItem(
+        "cart",
+        sessionStorage.getItem("cart") === null
+          ? sessionStorage.getItem("product_id")
+          : sessionStorage.getItem("cart") +
+              "," +
+              sessionStorage.getItem("product_id")
+      );
+      sessionStorage.setItem(
+        "productCnt",
+        sessionStorage.getItem("productCnt") === null
+          ? cnt
+          : sessionStorage.getItem("productCnt") + "," + cnt
+      );
+    }
   };
 
   return (
@@ -58,6 +83,7 @@ const Product = () => {
       <main className="mw6 center">
         <div className="dt mw6 pv4 pv5-m pv6-ns">
           <div className="dtc v-mid">
+<<<<<<< Updated upstream
             <Image fluid src={product.image} className="mw9" thumbnail="thumbnail"
               style={{
               border: "5px solid rgba(128, 128, 128, .6)",
@@ -69,6 +95,26 @@ const Product = () => {
           </div>
           <div className="dtc v-top pl3">
             <h6 dangerouslySetInnerHTML={{ __html: product.title }} />
+=======
+<<<<<<< HEAD
+            <Image fluid src={prod.image} className="mw9" />
+          </div>
+          <div className="dtc v-top pl3">
+            <p dangerouslySetInnerHTML={{ __html: prod.title }} />
+=======
+            <Image fluid src={product.image} className="mw9" thumbnail="thumbnail"
+              style={{
+              border: "5px solid rgba(128, 128, 128, .6)",
+              borderRadius: "30px",
+              width: "360px",
+              height: "360px"
+            }} />
+
+          </div>
+          <div className="dtc v-top pl3">
+            <h6 dangerouslySetInnerHTML={{ __html: product.title }} />
+>>>>>>> 8aff48b1570490eef338f7deeafff7a03547e131
+>>>>>>> Stashed changes
             <div className="mv3">
               <label className="db fw6 lh-copy f6" htmlFor="size">
                 사이즈
@@ -110,17 +156,18 @@ const Product = () => {
                 type="text"
                 name="price"
                 disabled="disabled"
-                value={product.lprice * cnt}
+                value={prod.lprice * cnt}
                 style={{ textAlign: "center" }}
               />
             </div>
             <div className="ph3">
-              <a
+              <button
                 className="f6 link dim ph3 pv2 mb2 dib white bg-light-purple"
                 href="#0"
+                onClick={cartDate}
               >
                 Cart
-              </a>
+              </button>
             </div>
             <div className="ph3">
               <a
