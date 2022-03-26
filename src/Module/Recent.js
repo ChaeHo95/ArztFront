@@ -13,7 +13,7 @@ for (let number = 1; number <= 5; number++) {
   );
 }
 
-const Account = () => {
+const Recent = () => {
   return (
     <Container>
       <div className="title" style={{ textAlign: 'center' }}>
@@ -117,4 +117,4 @@ const Account = () => {
   )
 }
 
-export default Account;
+export default Recent;

@@ -60,7 +60,13 @@ const Product = () => {
       <main className="mw6 center">
         <div className="dt mw6 pv4 pv5-m pv6-ns">
           <div className="dtc v-mid">
-            <Image fluid src={prod.image} className="mw9" />
+            <Image fluid src={prod.image} className="mw9" thumbnail="thumbnail"
+              style={{
+                border: "5px solid rgba(128, 128, 128, .6)",
+                borderRadius: "30px",
+                width: "360px",
+                height: "360px"
+              }}/>
           </div>
           <div className="dtc v-top pl3">
             <p dangerouslySetInnerHTML={{ __html: prod.title }} />
@@ -68,7 +74,7 @@ const Product = () => {
               <label className="db fw6 lh-copy f6" htmlFor="size">
                 사이즈
               </label>
-              <select id="size">
+              <select style={{ width: "385px", paddingLeft: "15px", height: "40px", textAlign: "center" }} id="size">
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -85,7 +91,7 @@ const Product = () => {
                 disabled="disabled"
                 name="quanity"
                 value={cnt}
-                style={{ textAlign: "center", width: "328px" }}
+                style={{ textAlign: "center", paddingLeft: "65px", width: "328px"}}
               />
               <button
                 onClick={cntUp}

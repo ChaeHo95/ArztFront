@@ -11,15 +11,8 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const Admin = () => {
-
     const [data, setData] = useState([]);
-
-
-
     useEffect(() => {
-
-
-        
         axios({
             url: "/member/show",
             method: "GET",
