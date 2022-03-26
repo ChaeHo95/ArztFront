@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const Products = () => {
@@ -19,19 +18,29 @@ const Products = () => {
         : sessionStorage.getItem("category2")
     );
     setCategory3(sessionStorage.getItem("category3"));
-
-    axios({
-      url: "/product/products",
-      method: "post",
-      data: {
-        category1: sessionStorage.getItem("category1"),
-        category2: sessionStorage.getItem("category2"),
-        category3: sessionStorage.getItem("category3"),
-      },
-      baseURL: "http://localhost:8088",
-    }).then((response) => {
-      setProducts(response.data);
-    });
+    if (sessionStorage.getItem("category1") != null) {
+      axios({
+        url: "/product/products",
+        method: "post",
+        data: {
+          category1: sessionStorage.getItem("category1"),
+          category2: sessionStorage.getItem("category2"),
+          category3: sessionStorage.getItem("category3"),
+        },
+        baseURL: "http://localhost:8088",
+      }).then((response) => {
+        setProducts(response.data);
+      });
+    } else {
+      axios({
+        url: "/product/allProducts",
+        method: "get",
+        baseURL: "http://localhost:8088",
+      }).then((response) => {
+        setCategory1("전체 상품");
+        setProducts(response.data);
+      });
+    }
   }, []);
 
   const productOpen = (e) => {
@@ -40,13 +49,9 @@ const Products = () => {
   };
 
   return (
-    <Container
-      style={{
-        textAlign: "center",
-      }}
-    >
+    <>
       <div
-        style={{ marginTop: "135px", marginLeft: "10px", fontSize: "1.2rem", textAlign: "left" }}
+        style={{ marginTop: "135px", marginLeft: "10px", fontSize: "1.2rem" }}
       >
         {category1}
         {category2}
@@ -69,35 +74,37 @@ const Products = () => {
                         border: "5px solid rgba(128, 128, 128, .6)",
                         borderRadius: "30px",
                         cursor: "pointer",
-                        width: "280px",
-                        height: "280px"
                       }}
                       alt={product.product_id}
                       onClick={productOpen}
                     />
-                  </div>
                     <dl className="mt2 f6 lh-copy">
                       <dt
-                        className="ml0 truncate w-100"
+                        className="ml0 gray truncate w-100"
                         dangerouslySetInnerHTML={{ __html: product.title }}
                         style={{ cursor: "default" }}
                       ></dt>
-                      
-                      <dd
-                        className="ml0 truncate w-100"
+                      <dt
+                        className="ml0 gray truncate w-100"
                         style={{ cursor: "default" }}
                       >
-                      <h5>{product.lprice}</h5>
+                        {product.brand}
+                      </dt>
+                      <dd
+                        className="ml0 gray truncate w-100"
+                        style={{ cursor: "default" }}
+                      >
+                        {product.lprice}
                       </dd>
                     </dl>
                   </div>
-                
+                </div>
               );
             })}
           </div>
         </div>
       </main>
-    </Container>
+    </>
   );
 };
 export default Products;
