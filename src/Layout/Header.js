@@ -4,8 +4,6 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import $ from "jquery";
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -13,6 +11,7 @@ const Header = () => {
   const [category2s, setCategory2s] = useState([]);
   const [category3s, setCategory3s] = useState([]);
   const [category, setCategory] = useState(false);
+  const [isOP, setOP] = useState("");
 
   useEffect(() => {
     if (sessionStorage.getItem("session_key") != null) {
@@ -26,10 +25,11 @@ const Header = () => {
         },
         baseURL: "http://localhost:8088",
       }).then((response) => {
-        setIsLogin(response.data);
+        setOP(response.data.op);
+        setIsLogin(response.data.user_login);
       });
     }
-  });
+  }, []);
 
   const logout = () => {
     axios({
@@ -176,6 +176,19 @@ const Header = () => {
     sessionStorage.setItem("category3", e.target.innerText.replace(" >", ""));
     window.location.href = "/Module/Products";
   };
+  const IsAdmin = () => {
+    if (isOP === "관리자" || isOP === "판매자") {
+      return (
+        <>
+          <Button href="/Module/Admin" variant="outline-secondary">
+            Admin
+          </Button>
+        </>
+      );
+    } else {
+      return <></>;
+    }
+  };
 
   return (
     <header>
@@ -188,7 +201,6 @@ const Header = () => {
         <Navbar.Brand href="/" style={{ marginLeft: "10px" }}>
           <h1>Artz</h1>
         </Navbar.Brand>
-
         <InputGroup className="justify-content-center">
           <Col xs={8}>
             <Form.Control
@@ -202,7 +214,7 @@ const Header = () => {
             Search
           </Button>
         </InputGroup>
-        <Button href="/Module/Admin" variant="outline-secondary">Admin</Button>
+        <IsAdmin />
         <Nav className="justify-content-end">
           <Nav.Link href="/Module/Info">
             <img

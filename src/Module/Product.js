@@ -23,7 +23,11 @@ const Product = () => {
     setCnt(cnt + 1);
   };
   const cntDown = () => {
-    setCnt(cnt - 1);
+    if (cnt == 1) {
+      alert("최소값은 1입니다.");
+    } else {
+      setCnt(cnt - 1);
+    }
   };
   const cartDate = () => {
     if (

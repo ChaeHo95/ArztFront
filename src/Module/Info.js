@@ -147,19 +147,17 @@ const Info = () => {
         url: "/member/state",
         method: "post",
         data: {
-          id: null,
           user_session: sessionStorage.getItem("session_key"),
-          user_login: false,
         },
         baseURL: "http://localhost:8088",
       }).then((response) => {
-        console.log(response.data);
-        setIsLogin(response.data);
-        if (!response.data) {
+        console.log(response.data.user_login);
+        setIsLogin(response.data.user_login);
+        if (!response.data.user_login) {
           alert("로그인 안됨");
           navi("/Module/Login");
         }
-      });
+      }, []);
     } else {
       alert("로그인 안됨");
       navi("/Module/Login");
@@ -198,9 +196,13 @@ const Info = () => {
       url: "/member/delete",
       method: "post",
       data: {
-        id: null,
-        user_session: sessionStorage.getItem("session_key"),
-        user_login: false,
+        user_id: id,
+        user_pwd: pw,
+        user_name: names,
+        user_sex: sex,
+        user_phone: phone,
+        user_mail: mail,
+        user_adress: adress,
       },
       baseURL: "http://localhost:8088",
     }).then((response) => {
