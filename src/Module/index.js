@@ -9,3 +9,4 @@ export { default as Product } from "./Product";
 export { default as Products } from "./Products";
 export { default as Detail } from "./Detail";
 export { default as Admin } from "./Admin";
+export { default as Buy } from "./Buy";

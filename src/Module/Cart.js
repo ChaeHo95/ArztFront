@@ -163,6 +163,18 @@ const Cart = () => {
             </table>
           </div>
         </div>
+        <div className="Btn-right">
+          <a
+            style={{
+            minWidth:'80px'  
+            }}
+            className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green"
+            href="/Module/Buy"
+          >
+            Buy
+          </a>
+        </div>
+        
         <Footer />
       </Container>
       <Modal open={open}>
@@ -179,6 +191,7 @@ const Cart = () => {
           </button>
         </div>
       </Modal>
+
     </>
   );
 };

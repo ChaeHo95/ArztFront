@@ -11,7 +11,7 @@ const Upper = () => {
           <img
             style={{ height: "400px" }}
             className="d-block w-100"
-            src="https://cdn.pixabay.com/photo/2021/03/16/21/46/tea-6101059_960_720.jpg"
+            // src="https://cdn.pixabay.com/photo/2021/03/16/21/46/tea-6101059_960_720.jpg"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -22,7 +22,7 @@ const Upper = () => {
           <img
             style={{ height: "400px" }}
             className="d-block w-100"
-            src="https://cdn.pixabay.com/photo/2022/02/15/00/40/lemonade-7014122_960_720.jpg"
+            // src="https://cdn.pixabay.com/photo/2022/02/15/00/40/lemonade-7014122_960_720.jpg"
             alt="Second slide"
           />
           <Carousel.Caption>
@@ -33,7 +33,7 @@ const Upper = () => {
           <img
             style={{ height: "400px" }}
             className="d-block w-100"
-            src="https://cdn.pixabay.com/photo/2021/10/04/06/28/cactus-6679665_960_720.jpg"
+            // src="https://cdn.pixabay.com/photo/2021/10/04/06/28/cactus-6679665_960_720.jpg"
             alt="Third slide"
           />
           <Carousel.Caption>
