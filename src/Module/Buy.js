@@ -1,9 +1,6 @@
 import {React} from "react";
 import {Container, Nav} from "react-bootstrap";
 import Footer from "../Layout/Footer";
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
-import Accordion from 'react-bootstrap/Accordion'
 
 
 const Buy = () => {

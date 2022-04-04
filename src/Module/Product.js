@@ -23,7 +23,11 @@ const Product = () => {
     setCnt(cnt + 1);
   };
   const cntDown = () => {
-    setCnt(cnt - 1);
+    if (cnt == 1) {
+      alert("최소값은 1입니다.");
+    } else {
+      setCnt(cnt - 1);
+    }
   };
   const cartDate = () => {
     if (
@@ -40,8 +44,10 @@ const Product = () => {
           ? sessionStorage.getItem("product_id")
           : sessionStorage.getItem("cart") +
               "," +
-              sessionStorage.getItem("product_id")
+          sessionStorage.getItem("product_id")
+        
       );
+      {alert("장바구니에 상품을 담았습니다.")}
       sessionStorage.setItem(
         "productCnt",
         sessionStorage.getItem("productCnt") === null
@@ -120,13 +126,13 @@ const Product = () => {
               />
             </div>
             <div className="ph3">
-              <a
+              <button
                 className="f6 link dim ph3 pv2 mb2 dib white bg-light-purple"
                 href="#0"
                 onClick={cartDate}
               >
                 Cart
-              </a>
+              </button>
             </div>
             <div className="ph3">
               <a
