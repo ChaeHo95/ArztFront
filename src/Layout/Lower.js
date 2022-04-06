@@ -3,7 +3,7 @@ import Image from "react-bootstrap/Image";
 const Lower = () => {
   return (
     <div className="cardgroup">
-      <article>
+      {/* <article>
         <div className="cf pa2">
           <div className="fl w-50 w-25-m w-20-l pa2">
             <a href="/Module/Product" className="db link dim tc">
@@ -165,7 +165,7 @@ const Lower = () => {
             </a>
           </div>
         </div>
-      </article>
+      </article> */}
     </div>
   );
 };
