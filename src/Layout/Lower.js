@@ -1,172 +1,114 @@
 import Image from "react-bootstrap/Image";
+import React, { useState, useEffect } from "react";
+import { Navbar, Nav, Container, Button, InputGroup } from "react-bootstrap";
+import axios from "axios";
+import $ from "jquery";
 
 const Lower = () => {
+  const [category1, setCategory1] = useState("");
+  const [category2, setCategory2] = useState("");
+  const [category3, setCategory3] = useState("");
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setCategory1(
+      sessionStorage.getItem("category2") != null
+        ? sessionStorage.getItem("category1") + "  >  "
+        : sessionStorage.getItem("category1")
+    );
+    setCategory2(
+      sessionStorage.getItem("category3") != null
+        ? sessionStorage.getItem("category2") + "  >  "
+        : sessionStorage.getItem("category2")
+    );
+    setCategory3(sessionStorage.getItem("category3"));
+    if (sessionStorage.getItem("category1") != null) {
+      axios({
+        url: "/product/products",
+        method: "post",
+        data: {
+          category1: sessionStorage.getItem("category1"),
+          category2: sessionStorage.getItem("category2"),
+          category3: sessionStorage.getItem("category3"),
+        },
+        baseURL: "http://localhost:8088",
+      }).then((response) => {
+        setProducts(response.data);
+      });
+    } else {
+      axios({
+        url: "/product/allProducts",
+        method: "get",
+        baseURL: "http://localhost:8088",
+      }).then((response) => {
+        setCategory1("전체 상품");
+        setProducts(response.data);
+      });
+    }
+  }, []);
+
+  const productOpen = (e) => {
+    sessionStorage.setItem("product_id", e.target.alt);
+    window.location.href = "/Module/Product";
+  };
   return (
-    <div className="cardgroup">
-      {/* <article>
-        <div className="cf pa2">
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Frank Ocean Blonde Album Cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">Blonde</dd>
-                <dt className="clip">Artist</dt>
-                <dd>36000</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-
-            <a href="/Module/Product" className="link dim tc">
-              <Image thumbnail src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Young Thug - Jeffery Album Cover" className="w-100 db outline black-10" />
-
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100 ttu">Jeffery</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Young Thug</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Kendrick Lamar untitled unmastered. Album Cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">
-                  untitled umastered.
-                </dd>
-                <dt className="clip">Artist</dt>
-                <dd>Kendrick Lamar</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Kaytranada 99%"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">99%</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Kaytranada</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Baauer Aa - Album Cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">Aa</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Baauer</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Santigold 99 cents - Album cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">99 cents</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Santigold</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="A Moon Shaped Pool - Album cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">A Moon Shaped Pool</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Radiohead</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="The Life of Pablo - Album Cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">The Life of Pablo</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Kanye West</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Coloring Book - Album cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">Coloring Book</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Chance the Rapper</dd>
-              </dl>
-            </a>
-          </div>
-          <div className="fl w-50 w-25-m w-20-l pa2">
-            <a href="/Module/Product" className="db link dim tc">
-              <Image
-                thumbnail
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22171%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20171%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f96b182a7%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3Avar(--bs-font-sans-serif)%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f96b182a7%22%3E%3Crect%20width%3D%22171%22%20height%3D%22180%22%20fill%3D%22%23373940%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2260.375%22%20y%3D%2295.4%22%3E171x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Everybody Looking - Album Cover"
-                className="w-100 db outline black-10"
-              />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">Everybody Looking</dd>
-                <dt className="clip">Artist</dt>
-                <dd>Gucci Mane</dd>
-              </dl>
-            </a>
+    
+    <>
+      <div
+        style={{ marginTop: "135px", marginLeft: "10px", fontSize: "1.2rem" }}
+      >
+        {category1}
+        {category2}
+        {category3}
+      </div>
+      <main
+        className="mv2 center"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <div className="productsgroup" style={{ marginTop: "10px" }}>
+          <div className="products">
+            {products.map((product, id) => {
+              return (
+                <div key={id} style={{ width: "280px", margin: "20px" }}>
+                  <div className="db link dim tc">
+                    <img
+                      src={product.image}
+                      className="w-100 db outline black-10"
+                      style={{
+                        border: "5px solid rgba(128, 128, 128, .6)",
+                        borderRadius: "30px",
+                        cursor: "pointer",
+                      }}
+                      alt={product.product_id}
+                      onClick={productOpen}
+                    />
+                    <dl className="mt2 f6 lh-copy">
+                      <dt
+                        className="ml0 gray truncate w-100"
+                        dangerouslySetInnerHTML={{ __html: product.title }}
+                        style={{ cursor: "default" }}
+                      ></dt>
+                      <dt
+                        className="ml0 gray truncate w-100"
+                        style={{ cursor: "default" }}
+                      >
+                        {product.brand}
+                      </dt>
+                      <dd
+                        className="ml0 gray truncate w-100"
+                        style={{ cursor: "default" }}
+                      >
+                        {product.lprice}
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </article> */}
-    </div>
+      </main>
+    </>
   );
 };
 

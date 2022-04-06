@@ -3,6 +3,7 @@ import Footer from "../Layout/Footer";
 import Image from "react-bootstrap/Image";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Lower from "../Layout/Lower";
 
 const Product = () => {
   const [prod, setProd] = useState({});
@@ -144,10 +145,9 @@ const Product = () => {
             </div>
           </div>
         </div>
-
-        <h5 className="fw-bolder mb-4">Related products</h5>
-        
       </main>
+      <h5 className="fw-bolder mb-4">Related products</h5>
+      <Lower/>
       <Footer />
     </Container>
   );
