@@ -107,11 +107,11 @@ const Cart = () => {
             <table className="f6 w-100 mw9 center" cellSpacing="0">
               <thead>
                 <tr className="stripe-dark">
-                  <th className="fw6 tl pa3 bg-white">Item No</th>
-                  <th className="fw6 tl pa3 bg-white">Category</th>
-                  <th className="fw6 tl pa3 bg-white">Item Name</th>
-                  <th className="fw6 tl pa3 bg-white">Quanity</th>
-                  <th className="fw6 tl pa3 bg-white">Price</th>
+                  <th className="fw6 tl pa3 bg-white center">Item No</th>
+                  <th className="fw6 tl pa3 bg-white center">Category</th>
+                  <th className="fw6 tl pa3 bg-white center">Item Name</th>
+                  <th className="fw6 tl pa3 bg-white center">Quanity</th>
+                  <th className="fw6 tl pa3 bg-white center">Price</th>
                 </tr>
               </thead>
               <tbody className="lh-copy">
