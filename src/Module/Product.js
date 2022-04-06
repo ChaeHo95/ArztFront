@@ -135,14 +135,7 @@ const Product = () => {
                 Cart
               </button>
             </div>
-            <div className="ph3">
-              <a
-                className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green"
-                href="/Module/Buy"
-              >
-                Buy
-              </a>
-            </div>
+            
           </div>
         </div>
       </main>
