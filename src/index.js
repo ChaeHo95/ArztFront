@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import Browser from "./Browser";
 import Header from "./Layout/Header";
 import "./App.css";
-import './dropdown.css'
 
 ReactDOM.render(
   <React.StrictMode>

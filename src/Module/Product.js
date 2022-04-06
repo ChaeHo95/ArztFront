@@ -44,8 +44,10 @@ const Product = () => {
           ? sessionStorage.getItem("product_id")
           : sessionStorage.getItem("cart") +
               "," +
-              sessionStorage.getItem("product_id")
+          sessionStorage.getItem("product_id")
+        
       );
+      {alert("장바구니에 상품을 담았습니다.")}
       sessionStorage.setItem(
         "productCnt",
         sessionStorage.getItem("productCnt") === null
@@ -64,7 +66,13 @@ const Product = () => {
       <main className="mw6 center">
         <div className="dt mw6 pv4 pv5-m pv6-ns">
           <div className="dtc v-mid">
-            <Image fluid src={prod.image} className="mw9" />
+            <Image fluid src={prod.image} className="mw9" thumbnail="thumbnail"
+              style={{
+                border: "5px solid rgba(128, 128, 128, .6)",
+                borderRadius: "30px",
+                width: "360px",
+                height: "360px"
+              }}/>
           </div>
           <div className="dtc v-top pl3">
             <p dangerouslySetInnerHTML={{ __html: prod.title }} />
@@ -72,7 +80,7 @@ const Product = () => {
               <label className="db fw6 lh-copy f6" htmlFor="size">
                 사이즈
               </label>
-              <select id="size">
+              <select style={{ width: "385px", paddingLeft: "15px", height: "40px", textAlign: "center" }} id="size">
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -89,7 +97,7 @@ const Product = () => {
                 disabled="disabled"
                 name="quanity"
                 value={cnt}
-                style={{ textAlign: "center", width: "328px" }}
+                style={{ textAlign: "center", paddingLeft: "65px", width: "328px"}}
               />
               <button
                 onClick={cntUp}
@@ -129,7 +137,7 @@ const Product = () => {
             <div className="ph3">
               <a
                 className="f6 link dim ph3 pv2 mb2 dib white bg-dark-green"
-                href="#0"
+                href="/Module/Buy"
               >
                 Buy
               </a>

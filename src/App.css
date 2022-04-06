@@ -34,6 +34,7 @@ footer {
   border-radius: 30px;
   max-width: 800px;
 }
+
 .mb-2 {
   background-color: white;
   padding: 20px;
@@ -45,31 +46,37 @@ footer {
   max-width: 800px;
   margin: 0 auto;
 }
+
 .cardgroup {
   max-width: 800px;
   margin: 0 auto;
 }
+
 .tb {
   text-align: center;
 }
+
 .pagination {
   justify-content: center;
 }
 
-.pagination > li > a {
+.pagination>li>a {
   float: none;
 }
 
 .d-grid {
   max-width: 500px;
 }
+
 .pa4 {
   min-width: 400px;
 }
+
 .ph3 {
   text-align: center;
   min-width: 400px;
 }
+
 .Btn-right {
   margin-top: 20px;
   text-align: end;
@@ -84,6 +91,7 @@ h1 {
   font-family: "Pacifico", cursive;
   text-align: center;
 }
+
 h2 {
   color: black;
   height: 100px;
@@ -101,6 +109,7 @@ h3 {
   text-align: center;
   margin: 0 auto;
 }
+
 h4 {
   color: black;
   font-size: 40px;
@@ -122,6 +131,7 @@ h4 {
   /* background-image: url("./Images/background-img.jpg"); */
   z-index: 10;
 }
+
 .category {
   background: black;
   color: white;
@@ -140,7 +150,7 @@ h4 {
 }
 
 @media (min-width: 768px) {
-  .row-cols-md-3 > * {
+  .row-cols-md-3>* {
     width: 50%;
   }
 }
@@ -154,6 +164,7 @@ h4 {
   border: 2px solid #25262a;
   width: 250px;
 }
+
 .category2 {
   margin-bottom: 3px;
   margin-left: 5px;
@@ -163,6 +174,7 @@ h4 {
   border: 2px solid #25262a;
   width: 280px;
 }
+
 .category3 {
   margin-bottom: 3px;
   margin-left: 5px;
@@ -172,17 +184,20 @@ h4 {
   border: 2px solid #25262a;
   width: 250px;
 }
+
 .categorys {
   display: none;
   background: #212529;
   opacity: 0.9;
 }
+
 .productsgroup {
   margin: 0 auto;
   width: 90%;
   display: flex;
   justify-content: center;
 }
+
 .products {
   width: 90%;
   display: flex;
