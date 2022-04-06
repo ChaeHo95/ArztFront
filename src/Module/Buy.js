@@ -8,19 +8,21 @@ const Buy = () => {
     return (
         <Container
             style={{
-                marginTop: '200px',
-                textAlign: 'center'
-            }}>
-        <h2 class="">Thanks for your order</h2>
-        
-        <ul className="list tc pl0 w-100 mt5">
+                marginTop: '200px'
+                
+        }}>
+        <div className="center">
+        <h2>Thanks for your order</h2>
+        </div>
+        <li className="dib"><h5><b>Your Address : { }</b></h5></li><br></br>
+        <li className="dib red"><h5><b>Total Price : { }</b></h5></li><br></br>
             
 
 
-
-          <li className="dib"><a className="f5 link black db pv2 ph3 hover-light-purple" href="/Module/Cart"><h2><b>Return to Cart</b></h2></a></li>
-          <li className="dib"><a className="f5" href="/"><h2><b>Return to Home</b></h2></a></li>
-        </ul>
+            <div className="center" style={{marginTop:"200px"}}>
+          <li className="dib"><a className="f5 link" href="/Module/Cart"><h5><b>Return to Cart</b></h5></a></li><br></br><br></br>
+          <li className="dib"><a className="f5 link" href="/"><h5><b>Return to Home</b></h5></a></li>
+        </div>
             <Footer/>
         </Container>
 
